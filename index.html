@@ -1,2 +1,82 @@
-佐野のテスト<br>
-佐野のテスト2
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ガチャゲーム</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      background: linear-gradient(to bottom, #1e3c72, #2a5298);
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      margin-top: 20px;
+    }
+
+    .gacha-box {
+      margin: 40px auto;
+      padding: 30px;
+      width: 300px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background: gold;
+      color: black;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 24px;
+    }
+
+    .rarity-SSR { color: gold; }
+    .rarity-SR { color: violet; }
+    .rarity-R { color: lightblue; }
+    .rarity-N { color: white; }
+
+    .animation {
+      animation: flash 0.5s infinite alternate;
+    }
+
+    @keyframes flash {
+      from { opacity: 1; }
+      to { opacity: 0.3; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>🎰 ガチャゲーム 🎰</h1>
+
+<div class="gacha-box">
+  <button onclick="drawGacha()">ガチャを引く！</button>
+  <div id="result" class="result"></div>
+</div>
+
+<script>
+  const characters = [
+    { name: "伝説のドラゴン", rarity: "SSR", rate: 3 },
+    { name: "闇の魔法使い", rarity: "SR", rate: 12 },
+    { name: "剣士", rarity: "R", rate: 35 },
+    { name: "村人", rarity: "N", rate: 50 }
+  ];
+
+  function drawGacha() {
+    const resultDiv = document
