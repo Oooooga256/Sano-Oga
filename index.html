@@ -1,38 +1,4 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <title>ガチャゲーム</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      text-align: center;
-      background: linear-gradient(to bottom, #1e3c72, #2a5298);
-      color: white;
-      margin: 0;
-      padding: 0;
-    }
-
-    h1 {
-      margin-top: 20px;
-    }
-
-    .gacha-box {
-      margin: 40px auto;
-      padding: 30px;
-      width: 300px;
-      background: rgba(255,255,255,0.1);
-      border-radius: 20px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.3);
-    }
-
-    button {
-      padding: 10px 20px;
-      font-size: 18px;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      background: gold;
       color: black;
       transition: 0.2s;
     }
@@ -79,4 +45,29 @@
   ];
 
   function drawGacha() {
-    const resultDiv = document
+    const resultDiv = document.getElementById("result");
+    resultDiv.innerHTML = "抽選中...";
+    resultDiv.className = "result animation";
+
+    setTimeout(() => {
+      const rand = Math.random() * 100;
+      let sum = 0;
+      let selected;
+
+      for (let c of characters) {
+        sum += c.rate;
+        if (rand <= sum) {
+          selected = c;
+          break;
+        }
+      }
+
+      resultDiv.className = "result rarity-" + selected.rarity;
+      resultDiv.innerHTML = `\n        ${selected.rarity}！<br>${selected.name}\n      `;
+
+    }, 1000);
+  }
+</script>
+
+</body>
+</html>
